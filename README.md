@@ -2,13 +2,15 @@
 
 **A personal path through the JavaScript ecosystem — questions, answers, and examples.**
 
-My name is Pavel Piatrovich. This is my personal study material, assembled by hand and organised according to my own priorities and understanding. It reflects what I find important, how I explain it, and what I want to revisit as I keep learning.
+This is my personal study material, assembled by hand and organised according to my own priorities and understanding. It reflects what I find important, how I explain it, and what I want to revisit as I keep learning.
 
 The collection contains **123 study topics, 150 follow-up questions, and 88 code examples across 20 chapters**. It covers JavaScript, TypeScript, React, React Native, Next.js, state management, architecture, testing, performance, CSS, HTML, and security.
 
 The original material is in English. Its questions, detailed answers, plain-language explanations, follow-ups, examples, comparison tables, and React Native architecture figure are preserved. The original single-file interface, version badges, and introductory interview instructions are excluded.
 
 ## Website
+
+[Read JavaScript Ninja Path](https://pavel-labs.github.io/javascript-ninja-path/)
 
 The site is built as static HTML. Every topic has a direct URL and is readable without JavaScript. Search, colour themes, code copying, and reading progress enhance the static pages. Progress and theme preferences stay in the visitor’s browser; no account is needed.
 

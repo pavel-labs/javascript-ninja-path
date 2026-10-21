@@ -2,7 +2,7 @@
   "name": "javascript-ninja-path",
   "version": "1.0.0",
   "private": true,
-  "description": "Personal questions, answers, and study notes for the JavaScript ecosystem by Pavel Piatrovich.",
+  "description": "Personal questions, answers, and study notes for the JavaScript ecosystem.",
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": {
