@@ -1,0 +1,14 @@
+{
+  "slug": "performance",
+  "title": "Performance & Optimization",
+  "shortTitle": "Performance",
+  "group": "Engineering",
+  "topics": [
+    {
+      "id": "s8-c1",
+      "title": "How do you optimize large lists?",
+      "priority": "med",
+      "html": "<ul>\n<li>Virtualization: <code>react-window</code> or <code>@tanstack/react-virtual</code>. Only render visible rows.</li>\n<li><code>React.memo</code> on list items with expensive render.</li>\n<li><code>useDeferredValue</code> for filter input — typing stays smooth.</li>\n<li>Stable keys — DB id, not array index.</li>\n<li>Infinite scroll via React Query's <code>useInfiniteQuery</code>.</li>\n</ul>\n<div class=\"fu\">\n<div class=\"fu-item\"><div class=\"fq\">Core Web Vitals — LCP, INP, CLS?</div><div class=\"fa\">LCP (Largest Contentful Paint): main content load speed. INP (Interaction to Next Paint): responsiveness — avoid blocking main thread. CLS (Cumulative Layout Shift): visual stability — set width/height on images.</div></div>\n<div class=\"fu-item\"><div class=\"fq\">When does React.memo NOT help?</div><div class=\"fa\">Props include objects/functions not stabilized with useMemo/useCallback. Component uses useContext — memo doesn't stop context-driven re-renders. Render is already cheap.</div></div>\n<div class=\"fu-item\"><div class=\"fq\">What is hydration mismatch?</div><div class=\"fa\">Hydration: React attaches event handlers to server-rendered HTML. Mismatch: server/client rendered different output. Causes: Date.now(), Math.random(), browser-only APIs without checks, locale formatting.</div></div>\n</div>\n\n<div class=\"talk\"><div class=\"tl\">💬 Say it like this</div>\n<p>The first thing is virtualization: render only the rows that are visible. That is the change that actually matters — memoizing rows in a list of ten thousand items does not help if you still create ten thousand DOM nodes.</p>\n<p>After that I memoize the row component, use stable keys from the database id, and keep the filter input smooth with <code>useDeferredValue</code>. And I profile before and after, so I can say what the improvement was.</p>\n</div>"
+    }
+  ]
+}

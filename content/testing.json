@@ -1,0 +1,20 @@
+{
+  "slug": "testing",
+  "title": "Testing — Unit, Integration, E2E",
+  "shortTitle": "Testing",
+  "group": "Engineering",
+  "topics": [
+    {
+      "id": "s6-c1",
+      "title": "How do you test React components? Testing Library philosophy.",
+      "priority": "key",
+      "html": "<ul>\n<li>Test behavior, not implementation. No assertions on internal state or component methods.</li>\n<li>Query priority: <code>getByRole → getByLabelText → getByPlaceholderText → getByText → getByTestId</code> (last resort).</li>\n<li><code>userEvent</code> over <code>fireEvent</code> — simulates realistic input with delays.</li>\n</ul>\n<pre>test(\"shows error on invalid credentials\", async () =&gt; {\n  server.use(http.post(\"/api/login\", () =&gt; HttpResponse.json({ message: \"Invalid credentials\" }, { status: 401 })));\n  render(&lt;LoginForm /&gt;);\n  await userEvent.type(screen.getByLabelText(\"Email\"), \"bad@test.com\");\n  await userEvent.type(screen.getByLabelText(\"Password\"), \"wrong\");\n  await userEvent.click(screen.getByRole(\"button\", { name: /sign in/i }));\n  expect(await screen.findByRole(\"alert\")).toHaveTextContent(\"Invalid credentials\");\n});</pre>\n<div class=\"talk\"><div class=\"tl\">💬 Say it like this</div>\n<p>The core principle: test what the user sees and does, not how the component is implemented. If I refactor the internals but the behavior stays the same, my tests should still pass. I prefer <code>getByRole</code> for queries because it also validates accessibility — if a button has no accessible label, the query fails. For mocking network requests I use MSW — it intercepts at the network layer, so the same handlers work in unit tests, Storybook, and E2E tests.</p>\n</div>\n<div class=\"fu\">\n<div class=\"fu-item\"><div class=\"fq\">Test pyramid vs test trophy?</div><div class=\"fa\">Pyramid: many unit, fewer integration, few E2E. Trophy (Kent C. Dodds): integration tests are the base, fewer units (only complex logic), few E2E for critical paths. I lean trophy for frontend.</div></div>\n<div class=\"fu-item\"><div class=\"fq\">How do you fight flaky tests?</div><div class=\"fa\">Replace sleeps with waitForSelector/waitForResponse. Use strict locators. Reset state via API between tests. Treat retries as a code smell, not a fix.</div></div>\n</div>"
+    },
+    {
+      "id": "s6-c2",
+      "title": "Playwright & Page Object Model",
+      "priority": "med",
+      "html": "<pre>class LoginPage {\n  constructor(private page: Page) {}\n  async login(email: string, password: string) {\n    await this.page.getByLabel(\"Email\").fill(email);\n    await this.page.getByLabel(\"Password\").fill(password);\n    await this.page.getByRole(\"button\", { name: /sign in/i }).click();\n    await this.page.waitForURL(\"/dashboard\");\n  }\n}\n// Reuse auth state across tests — login once\nexport default defineConfig({ use: { storageState: \"playwright/.auth/user.json\" }, globalSetup: \"./global-setup.ts\" });</pre>\n\n<div class=\"talk\"><div class=\"tl\">💬 Say it like this</div>\n<p>The page object keeps the selectors and the actions of one screen in one class, so a change in the markup is fixed in one place instead of in twenty tests.</p>\n<p>The other thing I always set up is logging in once and reusing the storage state, because logging in through the UI in every test is the slowest and the most flaky part of an end-to-end suite.</p>\n</div>"
+    }
+  ]
+}

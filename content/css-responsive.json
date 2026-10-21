@@ -1,0 +1,32 @@
+{
+  "slug": "css-responsive",
+  "title": "CSS, MUI & Responsive Design",
+  "shortTitle": "CSS & Responsive",
+  "group": "Engineering",
+  "topics": [
+    {
+      "id": "s9-c1",
+      "title": "CSS-in-JS performance. MUI's sx prop trade-offs.",
+      "priority": "med",
+      "html": "<ul>\n<li>MUI v5: Emotion — CSS-in-JS with runtime class generation. Costs runtime CPU and SSR hydration overhead.</li>\n<li>MUI v6+ Pigment CSS: zero-runtime, statically extracted at build. Performance closer to CSS Modules.</li>\n<li><code>sx</code> prop: convenient for one-off overrides. For hot paths (tables, lists) prefer <code>styled()</code> or CSS Modules.</li>\n</ul>\n\n<div class=\"talk\"><div class=\"tl\">💬 Say it like this</div>\n<p>CSS-in-JS is convenient because styles live next to the component, but with Emotion the class names are generated at runtime, so it costs CPU on every render and adds work during hydration.</p>\n<p>The <code>sx</code> prop is fine for one-off overrides. In hot paths like tables and long lists I prefer <code>styled()</code> or CSS Modules, or a zero-runtime solution where styles are extracted at build time.</p>\n</div>"
+    },
+    {
+      "id": "s9-c2",
+      "title": "Design tokens — what are they and how to set up in MUI?",
+      "priority": "med",
+      "html": "<pre>const theme = createTheme({\n  palette: { primary:{ main:\"#5B4BE0\",light:\"#7B6FE8\",dark:\"#3D30B8\" }, brand:{subtle:\"#F0EDFF\",emphasis:\"#3C3489\"} },\n  shape: { borderRadius: 8 },\n});\ndeclare module \"@mui/material/styles\" {\n  interface Palette { brand: { subtle: string; emphasis: string } }\n}</pre>\n\n<div class=\"talk\"><div class=\"tl\">💬 Say it like this</div>\n<p>Tokens are named design values — colours, spacing, radius — instead of hard-coded numbers in components. In MUI they live in the theme, and I extend the theme types with module augmentation so custom tokens are type-safe.</p>\n<p>The benefit is that a redesign or a dark theme is a change in one file, not a search across the whole codebase.</p>\n</div>"
+    },
+    {
+      "id": "s9-c3",
+      "title": "CSS Cascade Layers (@layer) and specificity.",
+      "priority": "med",
+      "html": "<pre>/* Specificity: */\n#nav .link:hover /* (1,1,1) */   .nav a.active /* (0,2,1) */\nstyle=\"color:red\" /* inline — higher than any selector */\n@layer base, components, utilities;\n@layer base { button { background: white; } }\n@layer utilities { .bg-primary { background: #5B4BE0; } }\n/* utilities ALWAYS wins over base regardless of specificity */</pre>\n\n<div class=\"talk\"><div class=\"tl\">💬 Say it like this</div>\n<p>Cascade layers let me decide the order of my styles explicitly. I declare layers like base, components and utilities, and a later layer always wins over an earlier one, no matter how specific the selector is.</p>\n<p>That removes the usual specificity war — no more <code>!important</code> just to override a library style.</p>\n</div>"
+    },
+    {
+      "id": "s9-c4",
+      "title": "Flexbox vs Grid — when which?",
+      "priority": "basic",
+      "html": "<ul>\n<li><strong>Flexbox</strong>: one-dimensional (row OR column). Component-level layout — toolbars, button rows, nav.</li>\n<li><strong>Grid</strong>: two-dimensional (rows AND columns). Page-level layout — sidebars + main + footer, card grids.</li>\n<li>Combine: Grid for page structure, Flex inside each grid cell.</li>\n</ul>\n\n<div class=\"talk\"><div class=\"tl\">💬 Say it like this</div>\n<p>Flexbox is for one direction — a row or a column. Grid is for two directions at the same time, rows and columns together.</p>\n<p>In practice I use Grid for the page structure, like sidebar plus content, and Flexbox inside the blocks, for toolbars or button rows.</p>\n</div>"
+    }
+  ]
+}

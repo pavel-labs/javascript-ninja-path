@@ -1,0 +1,30 @@
+{
+  "sections": [
+    "react",
+    "react-19",
+    "server-components-nextjs",
+    "react-native-core",
+    "react-native-ui-performance",
+    "react-native-shipping",
+    "javascript",
+    "async-web-apis",
+    "typescript",
+    "state-management",
+    "architecture",
+    "solid-oop",
+    "design-systems",
+    "performance",
+    "css-responsive",
+    "testing",
+    "browser-network-security",
+    "owasp",
+    "modern-css",
+    "html"
+  ],
+  "source": "senior-frontend-interview-v9.html",
+  "imported": {
+    "topics": 123,
+    "followups": 150,
+    "codeExamples": 88
+  }
+}

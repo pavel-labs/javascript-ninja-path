@@ -1,0 +1,20 @@
+{
+  "slug": "solid-oop",
+  "title": "SOLID, OOP & Design Principles",
+  "shortTitle": "SOLID & OOP",
+  "group": "Engineering",
+  "topics": [
+    {
+      "id": "s10-c1",
+      "title": "Walk through SOLID tied to React.",
+      "priority": "med",
+      "html": "<ul>\n<li><strong>S</strong> — Single Responsibility. UserCard renders, not fetches. useUserData is a separate hook.</li>\n<li><strong>O</strong> — Open/Closed. New Button variant = pass variant='danger', not add an if inside.</li>\n<li><strong>L</strong> — Liskov. PrimaryButton works wherever Button is expected without breaking the contract.</li>\n<li><strong>I</strong> — Interface Segregation. Several narrow prop interfaces beat one wide monster.</li>\n<li><strong>D</strong> — Dependency Inversion. Component takes <code>onFetch: () =&gt; Promise</code> as prop, not imports axios directly.</li>\n</ul>\n<pre>// DIP — depend on abstraction\nfunction DataWidget&lt;T&gt;({ fetchFn }: { fetchFn: () =&gt; Promise&lt;T&gt; }) {\n  const { data } = useQuery([\"w\"], fetchFn);\n  return &lt;pre&gt;{JSON.stringify(data)}&lt;/pre&gt;;\n}\n// Prod: &lt;DataWidget fetchFn={() =&gt; api.getMetrics()} /&gt;\n// Test: &lt;DataWidget fetchFn={() =&gt; Promise.resolve(mock)} /&gt;</pre>\n<div class=\"talk\"><div class=\"tl\">💬 Say it like this</div>\n<p>I think about SOLID in terms of React patterns. Single responsibility: a component either displays data or fetches it — not both. Open/Closed: adding a new button style should be a new prop value, not a new if-statement. Dependency Inversion: a component should receive its data source as a prop — this is why testability improves so much when you pass <code>fetchFn</code> instead of calling <code>api.get</code> directly.</p>\n</div>"
+    },
+    {
+      "id": "s10-c2",
+      "title": "Immutability — why critical in React?",
+      "priority": "med",
+      "html": "<pre>// BAD — same ref, no re-render\nitems[0].name = \"B\"; setItems(items);\n// GOOD — new reference\nsetItems(prev =&gt; prev.map(i =&gt; i.id === 1 ? { ...i, name: \"B\" } : i));\n// Immer\nimport { produce } from \"immer\";\nsetItems(produce(draft =&gt; { draft[0].name = \"B\"; }));</pre>\n\n<div class=\"talk\"><div class=\"tl\">💬 Say it like this</div>\n<p>React compares state by reference, not by content. If I change an object in place, the reference stays the same, React sees nothing new, and the component does not re-render.</p>\n<p>So I always create a new object or a new array — spread, map, filter. On deeply nested state I use Immer, which lets me write it like a mutation while it produces a new object underneath.</p>\n</div>"
+    }
+  ]
+}
