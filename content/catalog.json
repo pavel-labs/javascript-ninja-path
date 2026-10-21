@@ -19,7 +19,11 @@
     "browser-network-security",
     "owasp",
     "modern-css",
-    "html"
+    "html",
+    "http-data-reliability",
+    "accessible-ui",
+    "build-tooling",
+    "production-practice"
   ],
   "source": "senior-frontend-interview-v9.html",
   "imported": {

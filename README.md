@@ -4,7 +4,9 @@
 
 This is my personal study material, assembled by hand and organised according to my own priorities and understanding. It reflects what I find important, how I explain it, and what I want to revisit as I keep learning.
 
-The collection contains **123 study topics, 150 follow-up questions, and 88 code examples across 20 chapters**. It covers JavaScript, TypeScript, React, React Native, Next.js, state management, architecture, testing, performance, CSS, HTML, and security.
+The collection contains **153 study topics, 210 follow-up questions, and 118 code examples across 24 chapters**. It covers JavaScript, TypeScript, React, React Native, Next.js, state management, architecture, testing, performance, CSS, HTML, and security.
+
+The expanded collection also covers HTTP caching and CORS, query-cache design, idempotent requests, accessible UI patterns, build pipelines, dependency delivery, production debugging, time zones, and currency localization. New topics include links to official documentation.
 
 The original material is in English. Its questions, detailed answers, plain-language explanations, follow-ups, examples, comparison tables, and React Native architecture figure are preserved. The original single-file interface, version badges, and introductory interview instructions are excluded.
 
